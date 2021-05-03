@@ -12,14 +12,6 @@ services:
       - MYSQL_ROOT_PASSWORD=mysql
     volumes:
       - ./datadir:/var/lib/mysql
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 120s
 
   jasperserver:
     image: retriever/jasperserver:7.2.0
@@ -37,11 +29,3 @@ services:
       - ./jasperserver-import:/jasperserver-import
     depends_on:
       - mysql
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 120s
